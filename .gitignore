@@ -1,0 +1,5 @@
+
+app/wp-config.php
+.env
+wp_settings
+.DS_Store
