@@ -1,0 +1,76 @@
+services:
+    wp-nginx:
+        depends_on:
+            - wp-database
+        build:
+            context: ./nginx
+        restart: unless-stopped
+        ports:
+            - 8080:80
+        env_file: .env
+        environment:
+            MYSQL_DB_HOST: database:3306
+            MYSQL_DB_NAME: "${MYSQL_DATABASE}"
+            MYSQL_DB_USER: "${MYSQL_USER}"
+            MYSQL_DB_PASSWORD: "${MYSQL_PASSWORD}"
+        volumes:
+            - ./app:/var/www/html
+            - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - web-network
+        links:
+            - wp-php-fpm
+
+    wp-database:
+        mem_limit: 2048m
+        image: mysql:8.4.0
+        restart: unless-stopped
+        ports:
+            - 3306:3306
+        volumes:
+            - db-data:/var/lib/mysql
+        networks:
+            - web-network
+        env_file: .env
+        environment:
+            MYSQL_DATABASE: "${MYSQL_DATABASE}"
+            MYSQL_USER: "${MYSQL_USER}"
+            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+
+    wp-phpmyadmin:
+        depends_on:
+            - wp-database
+        image: phpmyadmin
+        restart: unless-stopped
+        ports:
+            - 8081:80
+        env_file: .env
+        environment:
+            PMA_HOST: wp-database
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+        networks:
+            - web-network
+
+    wp-php-fpm:
+        depends_on:
+            - wp-database
+        build:
+            context: ./php
+        restart: unless-stopped
+        ports:
+            - :9000
+        volumes:
+            - ./app:/var/www/html
+            # - ./php/php.ini-production:/usr/local/etc/php/php-production.ini
+            # - ./php/php.ini-development:/usr/local/etc/php/php-development.ini
+        networks:
+            - web-network
+
+volumes:
+    db-data:
+
+networks:
+    web-network:
+        driver: bridge
