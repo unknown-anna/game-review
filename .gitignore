@@ -3,3 +3,7 @@ app/wp-config.php
 .env
 wp_settings
 .DS_Store
+node_modules
+package-lock.json
+documentation
+pnpm-lock.yaml

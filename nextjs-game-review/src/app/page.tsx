@@ -1,8 +1,8 @@
 
-export default function Home() {
+export default function Index() {
   return (
-    <div className="">
-      nextjs
+    <div>
+      this is index
     </div>
   );
 }
