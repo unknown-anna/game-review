@@ -1,0 +1,16 @@
+{
+  "Meta": {
+    "title": "Gamer Review"
+  },
+
+  "Nav": {
+    "logo": "Gamer Review",
+    "about": "About"
+  },
+
+  "Footer": {
+    "logo": "Gamer Review",
+    "about": "About"
+  }
+
+}
