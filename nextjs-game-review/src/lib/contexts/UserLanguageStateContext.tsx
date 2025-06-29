@@ -46,9 +46,11 @@ export const UserLanguageStateContextProvider = ({
 			expires: 3650, // 10 years
 		});
 		setIsLocaleSelected(true);
+		
 		console.log(`pathname = ${pathname}`);
 		console.log(`locale = ${locale}`);
 		// window.location.href = `/${locale}${pathname}`;
+
 	};
 
 	return (

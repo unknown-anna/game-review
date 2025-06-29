@@ -7,6 +7,7 @@ import  {
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { routing } from "@/i18n/routing";
 import { UserLanguageStateContextProvider } from "@/lib/contexts/UserLanguageStateContext";
+import Nav from '@/components/organisms/Nav';
 import Footer from '@/components/organisms/Footer';
 
 import "@/lib/css/global.css";
@@ -34,6 +35,7 @@ export default async function RootLayout(
         <AppRouterCacheProvider options={{ key: 'css' }}>
           <NextIntlClientProvider locale={Locale} messages={messages}>
             <UserLanguageStateContextProvider>
+              <Nav />
               {children}
               <Footer />
             </UserLanguageStateContextProvider>

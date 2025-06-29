@@ -2,6 +2,8 @@
 import type { FC } from 'react';
 import type { LanguageCode } from 'iso-639-1';
 import { getLocale, getTranslations } from 'next-intl/server';
+import styles from "@/lib/scss/Index.module.scss"; 
+import PortfolioList from '@/components/organisms/PortfolioList';
 
 type Props ={
   params: Promise<{
@@ -13,9 +15,8 @@ const Index: FC<Props> = async ({ params}) => {
   const resolveParams = await params;
 
   return (
-    <main>
-      this is index under locale
-      <p>locale = {resolveParams.locale}</p>
+    <main className={`w-full ${styles.index}`}>
+      <PortfolioList />
     </main>
   );
 }

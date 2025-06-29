@@ -6,8 +6,8 @@ import { handleLocaleRewrite } from "./lib/middleware/handleLocaleRewrite";
 export async function middleware(request: NextRequest) {
 	
 	const response = handleLocaleRewrite(request);
-	// if(response) return response;
-
+	if(response) return response;
+  
 	return NextResponse.next();
 
 }

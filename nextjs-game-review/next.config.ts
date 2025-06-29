@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:locale(ja/en)/:path*',
-        destination: '/[locale]/:path*',
+        source: '/:locale(ja/en)',
+        destination: '/[locale]',
       },
     ];
   }

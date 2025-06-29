@@ -1,0 +1,130 @@
+{
+	"portfolios": [
+		{
+			"title": "",
+			"filename": "drawingA.png",
+			"width": 1080,
+			"height": 1920
+		},
+		{
+			"title": "",
+			"filename": "drawingB.png",
+			"width": 2000,
+			"height": 2000
+		},
+		{
+			"title": "",
+			"filename": "drawingC.png",
+			"width": 4000,
+			"height": 2000
+		},
+		{
+			"title": "",
+			"filename": "drawingD.png",
+			"width": 2000,
+			"height": 2000
+		},
+		{
+			"title": "",
+			"filename": "drawingE.png",
+			"width": 2000,
+			"height": 4000
+		},
+		{
+			"title": "",
+			"filename": "drawingF.png",
+			"width": 2903,
+			"height": 1701
+		},
+		{
+			"title": "",
+			"filename": "drawingG.png",
+			"width": 2000,
+			"height": 4000
+		},
+		{
+			"title": "",
+			"filename": "drawingH.png",
+			"width": 1701,
+			"height": 2903
+		},
+		{
+			"title": "",
+			"filename": "drawingI.png",
+			"width": 1701,
+			"height": 2903
+		},
+		{
+			"title": "",
+			"filename": "drawingJ.png",
+			"width": 1701,
+			"height": 2903
+		},
+		{
+			"title": "",
+			"filename": "drawingK.png",
+			"width": 1709,
+			"height": 1157
+		},
+		{
+			"title": "",
+			"filename": "drawingL.png",
+			"width": 4000,
+			"height": 4000
+		},
+		{
+			"title": "",
+			"filename": "drawingM.png",
+			"width": 1701,
+			"height": 2903
+		},
+		{
+			"title": "",
+			"filename": "drawingN.png",
+			"width": 2000,
+			"height": 2000
+		},
+		{
+			"title": "",
+			"filename": "drawingO.png",
+			"width": 1080,
+			"height": 1920
+		},
+		{
+			"title": "",
+			"filename": "drawingP.png",
+			"width": 1920,
+			"height": 1080
+		},
+		{
+			"title": "",
+			"filename": "drawingQ.png",
+			"width": 2000,
+			"height": 2000
+		},
+		{
+			"title": "",
+			"filename": "drawingR.png",
+			"width": 2164,
+			"height": 3287
+		},
+		{
+			"title": "",
+			"filename": "drawingS.png",
+			"width": 1701,
+			"height": 2903
+		},
+		{
+			"title": "",
+			"filename": "drawingT.png",
+			"width": 1920,
+			"height": 1080
+		},
+		{
+			"title": "",
+			"filename": "drawingU.png",
+			"width": 4000,
+			"height": 4000
+		}
+	]
+}

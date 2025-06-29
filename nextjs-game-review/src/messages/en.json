@@ -4,8 +4,10 @@
   },
 
   "Nav": {
-    "logo": "Gamer Review",
-    "about": "About"
+    "Logo": "Gamer Review",
+    "About": "About",
+    "Profile": "Profile",
+    "Post": "Post"
   },
 
   "Footer": {
