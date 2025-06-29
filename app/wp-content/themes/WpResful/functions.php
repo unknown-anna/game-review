@@ -63,6 +63,8 @@ function getPostListJSON($post_args=array()) {
 			'category_link' => $category_link,
 			'tag_link' => $tag_link,
 		);
+
+		// debugs
 		// echo 'id = '.$post->ID.'<br>';
 		// echo 'title = '.$post->post_title.'<br>';
 		// echo 'author = '.$post->post_author.'<br>';
@@ -97,8 +99,12 @@ function getPostListJSON($post_args=array()) {
 
 	}
 
-	echo json_encode($posts);
-	// return $get_posts->query( $parsed_args );
+	$obj_posts = array(
+		'posts' => $posts,
+	);
+
+	echo json_encode($obj_posts);
+	return;
 
 }
 
