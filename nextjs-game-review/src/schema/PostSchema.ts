@@ -1,9 +1,28 @@
 import z from "zod";
 
+export const PostCategorySchema = z
+.object({
+	categoryName: z.string(),
+	categoryURL: z.string(),
+})
+export type PostCategory = z.infer<typeof PostCategorySchema>;
+
+export const PostTagSchema = z
+.object({
+	TagName: z.string(),
+	TagURL: z.string(),
+})
+export type PostTag = z.infer<typeof PostTagSchema>;
+
 export const PostSchema = z
 .object({
+	id: z.number(),
 	title: z.string(),
-	slug: z.string(),
+	author: z.string(),
+	excerpt: z.string(),
+	date: z.string(),
+	category: z.array(PostCategorySchema),
+	tag: z.array(PostTagSchema),
 	content: z.string(),
 });
 export type Post = z.infer<typeof PostSchema>;
