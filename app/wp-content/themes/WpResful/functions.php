@@ -1,33 +1,12 @@
 <?php
 
-/**
- * Get Posts in JSON format
- *
- * @param array $args {
- *     Query arguments.
- *
- *     @type int          $numberposts      Total number of posts to retrieve. Default 10.
- *     @type int          $posts_per_page   Number of posts to show per page. Default 10. if -1 show all
- *     @type int|array    $category         Category ID or array of IDs. Default 0.
- *     @type string       $orderby          Sort posts by. Default 'date'.
- *     @type string       $order            Sort order. Default 'DESC'.
- *     @type array        $include          Array of post IDs to include. Default empty.
- *     @type array        $exclude          Array of post IDs to exclude. Default empty.
- *     @type string       $meta_key         Meta key to retrieve. Default empty.
- *     @type string       $meta_post       Meta post to match. Default empty.
- *     @type string|array $post_type        Post type or array of post types to retrieve. Default 'post'.
- *     @type bool         $suppress_filters  Whether to suppress filters. Default true.
- *     @type string       $post_status      Post status to retrieve. Default 'publish'.
- * }
- *
- * @return array Array of posts in JSON format.
- */
 function getPostListJSON($post_args=array()) {
 
 	$post_arg_default = array(
 		// 'numberposts'      => 10,
 		'posts_per_page' => -1,
-		'category'         => 0,
+		'cat'       	  => 0,
+		'tag_id'          => 0,
 		'orderby'          => 'date',
 		'order'            => 'DESC',
 		'include'          => array(),
@@ -69,9 +48,8 @@ function getPostListJSON($post_args=array()) {
 	$obj_posts = array(
 		'posts' => $posts,
 	);
-
-	echo json_encode($obj_posts);
-	return;
+	
+	return json_encode($obj_posts);
 
 }
 
