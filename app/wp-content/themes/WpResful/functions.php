@@ -26,7 +26,7 @@ function getPostListJSON($post_args=array()) {
 
 	$post_arg_default = array(
 		// 'numberposts'      => 10,
-		'posts_per_page' => 5,
+		'posts_per_page' => -1,
 		'category'         => 0,
 		'orderby'          => 'date',
 		'order'            => 'DESC',
@@ -50,52 +50,19 @@ function getPostListJSON($post_args=array()) {
 
 	foreach ( $get_post as $post ) {
 
-		$category_link = getCategoryLinkByPostId($post->ID);
-		$tag_link = getTagLinkByPostId($post->ID);
+		$category = getCategoryLinkByPostId($post->ID);
+		$tag = getTagLinkByPostId($post->ID);
 
 		$posts[] = array(
 			'id' => $post->ID,
 			'title' => $post->post_title,
 			'author' => $post->post_author,
 			'excerpt' => $post->post_excerpt,
-			'content' => $post->post_content,
 			'date' => $post->post_date,
-			'category_link' => $category_link,
-			'tag_link' => $tag_link,
+			'category' => $category,
+			'tag' => $tag,
+			'content' => $post->post_content,
 		);
-
-		// debugs
-		// echo 'id = '.$post->ID.'<br>';
-		// echo 'title = '.$post->post_title.'<br>';
-		// echo 'author = '.$post->post_author.'<br>';
-		// echo 'excerpt = '.$post->post_excerpt.'<br>';
-		// echo 'date = '.$post->post_date.'<br>';
-		// echo '<br>';
-
-
-		// echo 'ID :'.$post->ID.'<br>';
-		// echo 'post_author :'.$post->post_author.'<br>';
-		// echo 'post_date :'.$post->post_date.'<br>';
-		// echo 'post_date_gmt :'.$post->post_date_gmt.'<br>';
-		// // echo $post->post_content.'<br>';
-		// echo 'post_title :'.$post->post_title.'<br>';
-		// echo 'post_excerpt :'.$post->post_excerpt.'<br>';
-		// echo 'post_status :'.$post->post_status.'<br>';
-		// echo 'ping_status :'.$post->ping_status.'<br>';
-		// echo 'post_password :'.$post->post_password.'<br>';
-		// echo 'post_name :'.$post->post_name.'<br>';
-		// echo 'to_ping :'.$post->to_ping.'<br>';
-		// echo 'pinged :'.$post->pinged.'<br>';
-		// echo 'post_modified :'.$post->post_modified.'<br>';
-		// echo 'post_modified_gmt :'.$post->post_modified_gmt.'<br>';
-		// echo 'post_content_filtered :'.$post->post_content_filtered.'<br>';
-		// echo 'post_parent :'.$post->post_parent.'<br>';
-		// echo 'guid :'.$post->guid.'<br>';
-		// echo 'menu_order :'.$post->menu_order.'<br>';
-		// echo 'post_type :'.$post->post_type.'<br>';
-		// echo 'post_mime_type :'.$post->post_mime_type.'<br>';
-		// echo 'comment_count :'.$post->comment_count.'<br>';
-		// echo 'filter :'.$post->filter.'<br>';
 
 	}
 
@@ -114,16 +81,23 @@ function getCategoryLinkByPostId($post_id=0)  {
 	}
 
 	$categories = get_the_terms( $post_id, 'category' );
-	if ( ! $categories || is_wp_error( $categories ) ) {
+	if ( !$categories || is_wp_error( $categories ) ) {
 		$categories = array();
 	}
-	$category_link = array();
+	$category_post = array();
 	foreach($categories as $category){
-		$category_link[$category->name] 
-			= esc_attr( get_term_link( $category->slug, 'category' ));
+		$category_id = get_term_by( 'slug', $category->slug, 'category' );
+		
+		$category_data = array(
+			'id' => $category_id->term_id,
+			'name' => $category->name,
+			'url' 
+				=> esc_attr( get_term_link( $category->slug, 'category' )),
+		);
+		$category_post[] = $category_data;
 	}
-	
-	return $category_link;
+
+	return $category_post;
 }
 
 function getTagLinkByPostId($post_id=0)  {
@@ -132,15 +106,22 @@ function getTagLinkByPostId($post_id=0)  {
 	}
 
 	$tags = get_the_terms( $post_id, 'post_tag' );
-	if ( ! $tags || is_wp_error( $tags ) ) {
+	if ( !$tags || is_wp_error( $tags ) ) {
 		$tags = array();
 	}
-	$tag_link = array();
-	foreach($tags as $tag){
-		$tag_link[$tag->name] 
-			= esc_attr( get_term_link( $tag->slug, 'post_tag' ));
+	$tag_post = array();
+	foreach($tags as $tag) {
+		$tag_id = get_term_by( 'slug', $tag->slug, 'post_tag' );
+		
+		$tag_data = array(
+			'id' => $tag_id->term_id,
+			'name' => $tag->name,
+			'url' 
+				=> esc_attr( get_term_link( $tag->slug, 'post_tag' )),
+		);
+		$tag_post[] = $tag_data;
 	}
 
-	return $tag_link;
+	return $tag_post;
 
 }

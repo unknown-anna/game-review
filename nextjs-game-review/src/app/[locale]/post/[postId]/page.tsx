@@ -1,17 +1,17 @@
 import type { FC } from 'react';
 
-type Props ={
+type Props = {
   params: Promise<{
-    locale: "ja" | "en"
+    locale: "ja" | "en",
+    postId: number
   }>;
 }
-const Post: FC<Props> = async ({ params}) => {
+const Post: FC<Props> = async ({ params }) => {
   const resolveParams = await params;
 
   return (
     <div>
-      this is Post
-      <p>locale = {resolveParams.locale}</p>
+      <h1>{resolveParams.postId}</h1>
     </div>
   );
 }
