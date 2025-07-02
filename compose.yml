@@ -63,8 +63,9 @@ services:
             - :9000
         volumes:
             - ./app:/var/www/html
-            # - ./php/php.ini-production:/usr/local/etc/php/php-production.ini
-            # - ./php/php.ini-development:/usr/local/etc/php/php-development.ini
+            - ./php/php_ini/php.ini-development:/usr/local/etc/php/php.ini-development
+            - ./php/php_ini/php.ini-production:/usr/local/etc/php/php.ini-production
+            - ./php/php_ini/php.ini:/usr/local/etc/php/php.ini
         networks:
             - web-network
 

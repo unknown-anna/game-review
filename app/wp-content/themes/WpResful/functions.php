@@ -1,4 +1,5 @@
 <?php
+add_theme_support( 'post-thumbnails' );
 
 function getPostListJSON($post_args=array()) {
 
@@ -32,14 +33,35 @@ function getPostListJSON($post_args=array()) {
 		$category = getCategoryLinkByPostId($post->ID);
 		$tag = getTagLinkByPostId($post->ID);
 
+		$thumbnail_id = get_post_thumbnail_id( $post );
+		$thumbnail = array(
+			"id" => 0,
+			"url" => "",
+			"width" => 0,
+			"height" => 0,
+		);
+		$thumbnail_data = array();
+		if($thumbnail_id > 0) {
+			$thumbnail_data = wp_get_attachment_image_src( $thumbnail_id, 'full' );
+		}
+		if(!empty($thumbnail_data)) {
+			$thumbnail = array( 
+				"id" => (int)$thumbnail_id,
+				"url" => $thumbnail_data[0],
+				"width" => (int)$thumbnail_data[1],
+				"height" => (int)$thumbnail_data[2],
+			);
+		}
+
 		$posts[] = array(
 			'id' => $post->ID,
 			'title' => $post->post_title,
 			'author' => $post->post_author,
 			'excerpt' => $post->post_excerpt,
 			'date' => $post->post_date,
-			'category' => $category,
+			'category' => (object)$category,
 			'tag' => $tag,
+			'thumbnail' => (object)$thumbnail,
 			'content' => $post->post_content,
 		);
 
@@ -66,13 +88,12 @@ function getCategoryLinkByPostId($post_id=0)  {
 	foreach($categories as $category){
 		$category_id = get_term_by( 'slug', $category->slug, 'category' );
 		
-		$category_data = array(
+		$category_post = array(
 			'id' => $category_id->term_id,
 			'name' => $category->name,
 			'url' 
 				=> esc_attr( get_term_link( $category->slug, 'category' )),
 		);
-		$category_post[] = $category_data;
 	}
 
 	return $category_post;

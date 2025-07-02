@@ -18,7 +18,6 @@ const Nav :FC = () => {
 
 				<div className="bg-gray-300 col-span-2">
 					<ul className="flex justify-end">
-						<li className="py-4 px-6 bg-gray-500"><Link href="/post">{t('Post')}</Link></li>
 						<li className="py-4 px-6 bg-gray-500"><Link href="/profile">{t('Profile')}</Link></li>
 						<li className="py-4 px-6 bg-gray-500">language</li>
 					</ul>

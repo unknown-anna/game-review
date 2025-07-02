@@ -1,5 +1,14 @@
 import z from "zod";
 
+export const PostThumbnailSchema = z
+  .object({
+    id: z.number(),
+    url: z.string(),
+    width: z.number(),
+    height: z.number(),
+  })
+export type PostThumbnail = z.infer<typeof PostThumbnailSchema>;
+
 export const PostCategorySchema = z
   .object({
     id: z.number(),
@@ -23,8 +32,9 @@ export const PostSchema = z
 		author: z.string(),
 		excerpt: z.string(),
 		date: z.string(),
-    category: z.array(PostCategorySchema),
+    category: PostCategorySchema,
 		tag: z.array(PostTagSchema),
+    thumbnail: PostThumbnailSchema,
 		content: z.string(),
 	}).passthrough();
 export type Post = z.infer<typeof PostSchema>;

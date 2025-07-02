@@ -7,3 +7,5 @@ node_modules
 package-lock.json
 documentation
 pnpm-lock.yaml
+
+php/php_ini
