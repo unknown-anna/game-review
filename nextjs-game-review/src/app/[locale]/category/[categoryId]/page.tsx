@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import type { LanguageCode } from 'iso-639-1';
 import { getLocale, getTranslations } from 'next-intl/server';
 import styles from "@/lib/scss/Index.module.scss"; 
-import PostList from '@/components/organisms/PostList';
+import PostList from '@/components/organisms/PostMasonry';
 
 type Props ={
   params: Promise<{

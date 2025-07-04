@@ -1,4 +1,9 @@
-import type { FC } from 'react';
+import  type { FC } from 'react';
+import styles from "@/lib/scss/Index.module.scss"; 
+import PostContent from '@/components/organisms/PostContent';
+import LoadingScreen from '@/components/organisms/LoadingScreen';
+import { getPost } from '@/lib/api/v1/post';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{
@@ -8,11 +13,17 @@ type Props = {
 }
 const Post: FC<Props> = async ({ params }) => {
   const resolveParams = await params;
+  const Post = await getPost(resolveParams.postId);
+
+  if(!Post) {
+    notFound();
+  }
 
   return (
-    <div>
-      <h1>{resolveParams.postId}</h1>
-    </div>
+    <main className={`w-2xl mx-auto pt-30 ${styles.index}`}>
+      <LoadingScreen isLoading={Post === undefined}/>
+      <PostContent Post={Post} />      
+    </main>
   );
 }
 

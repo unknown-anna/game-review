@@ -2,8 +2,10 @@
 import type { FC } from 'react';
 import type { LanguageCode } from 'iso-639-1';
 import { getLocale, getTranslations } from 'next-intl/server';
+import PostMasonry from '@/components/organisms/PostMasonry';
+import { getPostList } from '@/lib/api/v1/post';
 import styles from "@/lib/scss/Index.module.scss"; 
-import PostList from '@/components/organisms/PostList';
+import LoadingScreen from '@/components/organisms/LoadingScreen';
 
 type Props ={
   params: Promise<{
@@ -11,12 +13,12 @@ type Props ={
   }>;
 }
 const Index: FC<Props> = async ({ params}) => {
-  const t = await getTranslations('Meta');
-  const resolveParams = await params;
+  const PostList = await getPostList(0, 0);
 
   return (
     <main className={`w-5xl mx-auto pt-30 ${styles.index}`}>
-      <PostList tagId={0} categoryId={0}/>
+      <LoadingScreen isLoading={PostList === undefined}/>
+      <PostMasonry PostList={PostList} />
     </main>
   );
 }
