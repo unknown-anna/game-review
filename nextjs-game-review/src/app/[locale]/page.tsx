@@ -17,7 +17,7 @@ const Index: FC<Props> = async ({ params}) => {
 
   return (
     <main className={`w-5xl mx-auto pt-30 ${styles.index}`}>
-      <LoadingScreen isLoading={PostList === undefined}/>
+      <LoadingScreen isLoading={ PostList.posts.length === 0 } />
       <PostMasonry PostList={PostList} />
     </main>
   );

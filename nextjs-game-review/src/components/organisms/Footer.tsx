@@ -9,9 +9,11 @@ const Footer :FC = () => {
 	const locale = useLocale() as LanguageCode;
 
 	return (
-		<footer>
-			footer
-		</footer>
+		<div 
+			className='text-center py-10'
+			style={{ backgroundColor: '#f0f0f1' }}
+		>Yuki in Vancouer {new Date().getFullYear()} &copy;
+		</div>
 	)
 }
 export default Footer;

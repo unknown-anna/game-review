@@ -17,10 +17,6 @@ type Props = {
 }
 const PostMasonry: FC<Props> = ({PostList}) => {
 
-  const moveToPostDetail = (postId: number) => {
-    window.location.href = `/post/${postId}`
-  }
-
 	return (
       <Masonry columns={3} spacing={0}>
         { PostList?.posts.map((post) => (

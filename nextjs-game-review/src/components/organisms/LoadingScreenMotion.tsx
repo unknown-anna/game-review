@@ -3,25 +3,26 @@
 import type { FC } from 'react';
 import { motion } from "framer-motion";
 
-type Props = {
-	isLoading: boolean,
-}
+const LoadingScreenMotion: FC = () => {
 
-const LoadingScreen: FC<Props> = ({ isLoading }) => {
+  const animateKeyfream = {
+    opacity: [1,1,1,1,1,1,0], 
+    display: ["block", "block", "block", "block", "block", "block", "none"],
+  }
+  const exitKeyfream = {
+    opacity: [0,0,0,0,0,0,1], 
+    display: ["none", "none", "none", "none", "none", "none", "block"],
+  }
 
   return (
 		<motion.div
-      animate={ isLoading ? "visible" : "hidden" }
-      variants={{
-        hidden: {
-          opacity: [1,1,1,1,1,1,0], 
-          display: ["block", "block", "block", "block", "block", "block", "none"],
-          transition: { duration: 1 }
-        },
-        visible: {
-          opacity: 1,
-        }
+      animate={ animateKeyfream }
+      initial={{ opacity: 1 }}
+      exit = { exitKeyfream }
+      transition= {{
+        duration: 1
       }}
+			
 			style={{
 				width: "100%",
 				height: "100%",
@@ -66,4 +67,4 @@ const LoadingScreen: FC<Props> = ({ isLoading }) => {
 		</motion.div>
 	);
 };
-export default LoadingScreen;
+export default LoadingScreenMotion;

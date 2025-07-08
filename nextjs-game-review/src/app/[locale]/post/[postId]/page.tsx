@@ -1,9 +1,9 @@
 import  type { FC } from 'react';
 import styles from "@/lib/scss/Index.module.scss"; 
 import PostContent from '@/components/organisms/PostContent';
-import LoadingScreen from '@/components/organisms/LoadingScreen';
 import { getPost } from '@/lib/api/v1/post';
 import { notFound } from 'next/navigation';
+import LoadingScreen from '@/components/organisms/LoadingScreen';
 
 type Props = {
   params: Promise<{
@@ -21,7 +21,7 @@ const Post: FC<Props> = async ({ params }) => {
 
   return (
     <main className={`w-2xl mx-auto pt-30 ${styles.index}`}>
-      <LoadingScreen isLoading={Post === undefined}/>
+      <LoadingScreen isLoading={ Post === null } />
       <PostContent Post={Post} />      
     </main>
   );

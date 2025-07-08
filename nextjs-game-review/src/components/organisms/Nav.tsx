@@ -27,8 +27,7 @@ const Nav :FC = () => {
 
 				<div className="col-span-2">
 					<ul className="flex justify-end">
-						<li className="py-4 px-6"><Link href="/profile">{t('Profile')}</Link></li>
-						<li className="py-4 px-6">language</li>
+						<li className="py-4 px-6"><Link href="/post/441">{t('Profile')}</Link></li>
 					</ul>
 				</div>
 			</div>
